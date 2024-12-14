@@ -1,4 +1,4 @@
-FROM ubuntu:latest AS builder
+FROM debian:latest AS builder
 
 RUN apt-get update && apt-get install -y git cmake
 
