@@ -1,4 +1,4 @@
-FROM gcc:latest AS builder
+FROM ubuntu:latest AS builder
 
 RUN apt-get update && apt-get install -y git cmake
 
@@ -9,7 +9,7 @@ RUN cd msd_lite &&  \
     mkdir build &&  \
     cd build &&  \
     cmake -DCMAKE_CXX_FLAGS="-O3 -s" -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXE_LINKER_FLAGS="-static" .. &&  \
-    make -j5 &&  \
+    make &&  \
     make install
 
 
