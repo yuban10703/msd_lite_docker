@@ -8,7 +8,7 @@ RUN git config --global http.sslVerify false && \
 RUN cd msd_lite &&  \
     mkdir build &&  \
     cd build &&  \
-    cmake -DCMAKE_CXX_FLAGS="-O3 -s" -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXE_LINKER_FLAGS="-static" .. &&  \
+    cmake -DCMAKE_CXX_FLAGS="-O2 -s -static -static-libgcc -static-libstdc++" -DCMAKE_BUILD_TYPE=Release .. &&  \
     make &&  \
     make install
 
@@ -17,5 +17,6 @@ FROM scratch
 
 COPY --from=builder /usr/local/bin/msd_lite /usr/local/bin/msd_lite
 COPY msd_lite.conf /etc/msd_lite/msd_lite.conf
+
 
 ENTRYPOINT ["/usr/local/bin/msd_lite"]
